@@ -1,0 +1,227 @@
+
+:root {
+  --bg: #07080c;
+  --bg-2: #0b0d13;
+  --surface: rgba(255,255,255,.038);
+  --surface-2: rgba(255,255,255,.06);
+  --line: rgba(255,255,255,.09);
+  --line-strong: rgba(255,255,255,.16);
+  --text: #f2f5f9;
+  --text-2: #a8b2c1;
+  --text-3: #6f7a8a;
+  --accent: #10b981;
+  --accent-2: #22d3ee;
+  --violet: #a78bfa;
+  --amber: #f59e0b;
+  --grad: linear-gradient(135deg,#34d399 0%,#22d3ee 100%);
+  --radius: 16px;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { display:block; max-width:100%; }
+a { color: var(--accent-2); text-decoration:none; }
+a:hover { text-decoration: underline; text-underline-offset:3px; }
+:focus-visible { outline:2px solid var(--accent-2); outline-offset:3px; border-radius:6px; }
+
+.wrap { width:100%; max-width:1080px; margin:0 auto; padding:0 24px; }
+
+/* ---- nav ---- */
+.nav {
+  position:sticky; top:0; z-index:50;
+  display:flex; gap:6px; align-items:center;
+  padding:14px 24px;
+  background: rgba(7,8,12,.82);
+  backdrop-filter: blur(18px) saturate(140%);
+  border-bottom:1px solid var(--line);
+}
+.nav a {
+  padding:8px 14px; border-radius:999px;
+  color:var(--text-2); font-size:14px; font-weight:600;
+  transition: background .15s, color .15s;
+}
+.nav a:hover { background:var(--surface); color:var(--text); text-decoration:none; }
+.nav a.on { background:rgba(16,185,129,.14); color:var(--accent); }
+
+/* ---- hero ---- */
+.hero { position:relative; padding:76px 0 56px; overflow:hidden; }
+.hero::before {
+  content:''; position:absolute; inset:-40% 0 auto; height:520px;
+  background: radial-gradient(closest-side, rgba(139,92,246,.20), transparent 72%);
+  filter: blur(50px); pointer-events:none;
+}
+/* Grid, not flex. With three fixed-width phones in a flex row the phones
+   refuse to shrink, so the copy column collapses to ~230px and the tagline
+   wraps one word per line. minmax(0,1fr) lets each column keep its share. */
+.hero-inner {
+  position:relative;
+  display:grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr);
+  gap:48px; align-items:center;
+}
+.hero-copy { min-width:0; }
+.brandline { display:flex; align-items:center; gap:14px; margin-bottom:22px; }
+.brandline img {
+  width:58px; height:58px; flex:0 0 auto;
+  border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+.brandline h1 { font-size:32px; font-weight:850; letter-spacing:-.035em; line-height:1.12; }
+.brandline .tag { font-size:12.5px; color:var(--text-3); font-weight:600; white-space:nowrap; }
+
+h1 { font-size:clamp(30px,5vw,46px); font-weight:850; letter-spacing:-.035em; line-height:1.08; }
+.lede { font-size:18px; color:var(--text-2); margin:18px 0 26px; max-width:56ch; }
+.cta { display:flex; gap:12px; flex-wrap:wrap; }
+.btn {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:13px 22px; border-radius:999px;
+  font-size:15px; font-weight:700;
+  transition: transform .14s cubic-bezier(.22,1,.36,1), background .15s;
+}
+.btn:active { transform:scale(.97); }
+.btn-primary { background:var(--grad); color:#04120c; }
+.btn-ghost { background:var(--surface); border:1px solid var(--line); color:var(--text); }
+.btn:hover { text-decoration:none; }
+
+/* ---- phones ----
+   Overlapping rather than gapped: two phones stacked with a negative margin
+   read as depth and cost no extra horizontal width, which is what keeps the
+   copy column from being squeezed. */
+.phones { display:flex; justify-content:center; align-items:center; min-width:0; }
+.phones img {
+  width:min(232px, 48%); border-radius:26px;
+  box-shadow:0 30px 70px rgba(0,0,0,.6);
+  transition: transform .25s cubic-bezier(.22,1,.36,1);
+}
+.phones img:nth-child(2) { margin-left:-52px; transform:translateY(-26px); z-index:1; }
+.phones img:nth-child(2):hover { transform:translateY(-30px) scale(1.02); }
+
+/* ---- sections ---- */
+section { padding:64px 0 72px; }
+.sec-head { margin-bottom:28px; }
+.sec-head .eyebrow {
+  font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--accent);
+}
+.sec-head h2 { font-size:clamp(22px,3.4vw,30px); font-weight:800; letter-spacing:-.03em; margin-top:8px; }
+.sec-head p { color:var(--text-2); margin-top:10px; max-width:64ch; }
+
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; }
+.card {
+  padding:20px; border-radius:var(--radius);
+  background:var(--surface); border:1px solid var(--line);
+}
+.card h3 { font-size:16px; font-weight:750; letter-spacing:-.015em; margin-bottom:7px; }
+.card p { font-size:14.5px; color:var(--text-2); }
+.card .num {
+  display:inline-grid; place-items:center;
+  width:28px; height:28px; border-radius:9px; margin-bottom:12px;
+  background:rgba(16,185,129,.14); color:var(--accent);
+  font-size:13px; font-weight:800;
+}
+
+/* Fixed column count rather than auto-fit. There are exactly eight
+   screenshots, and auto-fit resolves to five columns at desktop width - which
+   fills the first row and strands three in the second, leaving a dead gap
+   beside them. Four columns divides evenly into two full rows. */
+.shots { display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:22px; padding-bottom:20px; }
+.shot img {
+  width:100%; border-radius:20px;
+  box-shadow:0 20px 48px rgba(0,0,0,.5);
+  transition:transform .25s cubic-bezier(.22,1,.36,1);
+}
+.shot:hover img { transform:translateY(-5px); }
+.shot figcaption { font-size:13px; color:var(--text-3); margin-top:11px; }
+
+/* ---- honesty banner ---- */
+.honest {
+  display:flex; gap:14px; align-items:flex-start;
+  padding:20px 22px; border-radius:var(--radius);
+  background:rgba(245,158,11,.07);
+  border:1px solid rgba(245,158,11,.24);
+  margin:32px 0;
+}
+.honest strong { color:var(--amber); }
+.honest p { font-size:14.5px; color:var(--text-2); }
+.honest .ico { font-size:20px; line-height:1.3; }
+
+/* ---- policy pages ---- */
+.doc-head { padding:56px 0 8px; }
+.doc-head h1 { margin-bottom:10px; }
+.doc-head .crumb { font-size:13px; color:var(--text-3); margin-bottom:16px; }
+.doc-head .crumb a { color:var(--text-2); }
+.doc {
+  max-width:70ch; padding-bottom:24px;
+  font-size:16px; line-height:1.72; color:var(--text-2);
+}
+.doc h2 { display:none; }
+.doc h3 {
+  font-size:15px; font-weight:780; letter-spacing:.01em; color:var(--text);
+  margin:30px 0 10px;
+}
+.doc p { margin-bottom:14px; }
+.doc ul { margin:0 0 16px; padding-left:22px; }
+.doc li { margin-bottom:9px; }
+.doc strong { color:var(--text); font-weight:700; }
+.doc em { color:var(--text); font-style:italic; }
+.doc a { text-decoration:underline; text-underline-offset:2px; }
+.legal-updated {
+  font-size:13px !important; color:var(--text-3) !important;
+  padding-bottom:16px; margin-bottom:8px;
+  border-bottom:1px solid var(--line);
+}
+
+.toc {
+  display:flex; flex-wrap:wrap; gap:8px;
+  margin:0 0 30px; padding:14px 0 0;
+}
+.toc a {
+  padding:6px 13px; border-radius:999px;
+  background:var(--surface); border:1px solid var(--line);
+  font-size:13px; color:var(--text-2); font-weight:600;
+}
+.toc a:hover { background:var(--surface-2); color:var(--text); text-decoration:none; }
+
+/* ---- footer ---- */
+.foot { border-top:1px solid var(--line); margin-top:40px; padding:44px 0 30px; background:var(--bg-2); }
+.foot-inner {
+  width:100%; max-width:1080px; margin:0 auto; padding:0 24px;
+  display:flex; gap:28px; align-items:center; flex-wrap:wrap;
+}
+.foot-brand { display:flex; align-items:center; gap:11px; }
+.foot-brand img { border-radius:11px; }
+.foot-brand strong { display:block; font-size:15px; font-weight:800; }
+.foot-brand span { display:block; font-size:12px; color:var(--text-3); }
+.foot-links { display:flex; gap:20px; flex-wrap:wrap; margin-left:auto; }
+.foot-links a { font-size:14px; color:var(--text-2); }
+.foot-note { width:100%; font-size:12.5px; color:var(--text-3); margin:0; }
+.foot-legal {
+  width:100%; max-width:1080px; margin:26px auto 0; padding:0 24px;
+  font-size:12px; color:var(--text-3); line-height:1.6;
+}
+
+@media (max-width:1080px) {
+  .shots { grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+@media (max-width:860px) {
+  /* Single column, phones first. flex-direction does nothing here now that the
+     hero is a grid - the explicit grid-template-columns is what stacks it. */
+  .hero-inner { grid-template-columns: minmax(0,1fr); gap:36px; }
+  .phones { order:-1; }
+  .phones img { width:min(210px, 44%); }
+  .foot-links { margin-left:0; }
+}
+@media (max-width:640px) {
+  section { padding:48px 0 56px; }
+  .shots { grid-template-columns: repeat(2, minmax(0,1fr)); gap:16px; }
+  .nav { padding:12px 16px; gap:2px; }
+  .nav a { padding:7px 11px; font-size:13px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { transition-duration:.01ms !important; animation-duration:.01ms !important; scroll-behavior:auto !important; }
+}

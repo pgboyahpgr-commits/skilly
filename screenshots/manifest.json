@@ -1,0 +1,37 @@
+{
+  "capturedAt": "2026-10-02T15:43:40.485Z",
+  "shots": [
+    {
+      "name": "01-discover",
+      "caption": "Discover — Netflix-style shelves, no invented metrics"
+    },
+    {
+      "name": "02-story-reader",
+      "caption": "Reader — typography, themes and read-along narration"
+    },
+    {
+      "name": "03-comic-reader",
+      "caption": "Webtoon reader — continuous vertical panels"
+    },
+    {
+      "name": "04-gated-unlock",
+      "caption": "Gated episode — watch an ad OR spend coins, never forced"
+    },
+    {
+      "name": "05-rewards",
+      "caption": "Coins — earned by ads, reading and check-in"
+    },
+    {
+      "name": "06-studio",
+      "caption": "Creator Studio — multi-chapter, cover art, autosaved drafts"
+    },
+    {
+      "name": "07-theme-paper",
+      "caption": "Paper theme — six themes, all WCAG AA contrast"
+    },
+    {
+      "name": "08-privacy",
+      "caption": "Privacy & data — policies, export, erase"
+    }
+  ]
+}
